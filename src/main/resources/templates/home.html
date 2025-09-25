@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flight Booking API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+        }
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${message}"></h1>
+<table>
+    <thead>
+    <tr>
+        <th>Method</th>
+        <th>URL</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ep : ${endpoints}">
+        <td th:text="${ep.method}"></td>
+        <td th:text="${ep.url}"></td>
+        <td th:text="${ep.description}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
