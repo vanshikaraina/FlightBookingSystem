@@ -7,29 +7,29 @@
 <body>
 
 <div th:replace="fragments/navbar :: navbar"></div>
-<div class="hero">
-    <div class="hero-content">
+<div class="home-hero">
+    <div class="home-hero-content">
         <h1>Book Your Dream Flight</h1>
         <p>Fast, reliable, and affordable air travel reservations.</p>
-        <div class="hero-buttons">
-            <a th:href="@{/web/flights}" class="btn">Explore Flights</a>
-            <a th:href="@{/web/register}" class="btn btn-secondary">Join Now</a>
+        <div class="home-hero-buttons">
+            <a th:href="@{/web/flights}" class="home-btn">Explore Flights</a>
+            <a th:href="@{/web/register}" class="home-btn home-btn-secondary">Join Now</a>
         </div>
     </div>
 </div>
 
-<div class="container">
+<div class="home-container">
     <h2>Why Choose Us?</h2>
-    <div class="features">
-        <div class="card">
+    <div class="home-features">
+        <div class="home-card">
             <h3>✈ Easy Booking</h3>
             <p>Book flights in just a few clicks with a clean and modern interface.</p>
         </div>
-        <div class="card">
+        <div class="home-card">
             <h3>💰 Best Prices</h3>
             <p>Get the most affordable deals without compromising comfort.</p>
         </div>
-        <div class="card">
+        <div class="home-card">
             <h3>🌍 Global Reach</h3>
             <p>From local trips to international destinations, we cover it all.</p>
         </div>
