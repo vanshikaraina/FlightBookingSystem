@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<div th:fragment="navbar">
+  <div class="navbar">
+    <div class="logo">✈️ FlightBooking</div>
+    <div class="nav-links">
+      <a th:href="@{/web/home}">Home</a>
+      <a th:href="@{/web/dashboard}">Dashboard</a>
+      <a th:href="@{/web/flights}">Flights</a>
+      <a th:href="@{/web/bookings}">Bookings</a>
+      <a th:href="@{/web/profile}">Profile</a>
+
+      <!-- Show Login/Register if NOT logged in -->
+      <span th:if="${session.loggedInUser == null}">
+                <a th:href="@{/web/login}">Login</a>
+                <a th:href="@{/web/register}">Register</a>
+            </span>
+
+      <!-- Show Logout if logged in -->
+      <span th:if="${session.loggedInUser != null}">
+                <a th:href="@{/web/logout}">Logout</a>
+            </span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

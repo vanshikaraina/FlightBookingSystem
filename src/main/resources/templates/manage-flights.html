@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Flights</title>
+  <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+  <h2>Manage Flights</h2>
+
+  <!-- Add Flight Form -->
+  <h3>Add New Flight</h3>
+  <form th:action="@{/web/flights/add}" th:object="${newFlight}" method="post">
+    <label>Flight Number:</label>
+    <input type="text" th:field="*{flightNumber}" required />
+
+    <label>Airline:</label>
+    <input type="text" th:field="*{airline}" required />
+
+    <label>Source:</label>
+    <input type="text" th:field="*{source}" required />
+
+    <label>Destination:</label>
+    <input type="text" th:field="*{destination}" required />
+
+    <label>Departure Time:</label>
+    <input type="text" th:field="*{departureTime}" required />
+
+    <label>Arrival Time:</label>
+    <input type="text" th:field="*{arrivalTime}" required />
+
+    <label>Available Seats:</label>
+    <input type="number" th:field="*{availableSeats}" required />
+
+    <label>Price:</label>
+    <input type="number" step="0.01" th:field="*{price}" required />
+
+    <button type="submit">Add Flight</button>
+  </form>
+
+  <!-- Flights List -->
+  <h3>All Flights</h3>
+  <table border="1">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Flight Number</th>
+      <th>Airline</th>
+      <th>Source</th>
+      <th>Destination</th>
+      <th>Departure</th>
+      <th>Arrival</th>
+      <th>Seats</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="flight : ${flights}">
+      <td th:text="${flight.id}"></td>
+      <td th:text="${flight.flightNumber}"></td>
+      <td th:text="${flight.airline}"></td>
+      <td th:text="${flight.source}"></td>
+      <td th:text="${flight.destination}"></td>
+      <td th:text="${flight.departureTime}"></td>
+      <td th:text="${flight.arrivalTime}"></td>
+      <td th:text="${flight.availableSeats}"></td>
+      <td th:text="${flight.price}"></td>
+      <td>
+        <!-- Delete button -->
+        <form th:action="@{/web/flights/delete/{id}(id=${flight.id})}" method="post" style="display:inline">
+          <button type="submit">Delete</button>
+        </form>
+
+        <!-- Update button (link to edit page) -->
+        <a th:href="@{/web/flights/edit/{id}(id=${flight.id})}">Edit</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

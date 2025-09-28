@@ -51,6 +51,20 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
+    public void partialCancelBooking(Long bookingId, int seatsToCancel) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+
+        if (seatsToCancel >= booking.getSeatsBooked()) {
+            // Cancel entire booking
+            bookingRepository.deleteById(bookingId);
+        } else {
+            // Reduce seats booked
+            booking.setSeatsBooked(booking.getSeatsBooked() - seatsToCancel);
+            bookingRepository.save(booking);
+        }
+    }
+
 
     // Cancel a booking
     public boolean cancelBooking(Long bookingId) {

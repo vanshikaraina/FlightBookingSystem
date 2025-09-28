@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Flights</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <h2>Available Flights</h2>
+    <table>
+        <tr>
+            <th>Flight No</th><th>Airline</th><th>From</th><th>To</th>
+            <th>Departure</th><th>Arrival</th><th>Seats</th><th>Price</th><th>Action</th>
+        </tr>
+        <tr th:each="f : ${flights}">
+            <td th:text="${f.flightNumber}"></td>
+            <td th:text="${f.airline}"></td>
+            <td th:text="${f.source}"></td>
+            <td th:text="${f.destination}"></td>
+            <td th:text="${f.departureTime}"></td>
+            <td th:text="${f.arrivalTime}"></td>
+            <td th:text="${f.availableSeats}"></td>
+            <td th:text="${f.price}"></td>
+            <td>
+                <form th:action="@{'/web/book/' + ${f.id}}" method="post">
+                    <input type="number" name="seats" value="1" min="1"/>
+                    <button type="submit">Book</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <p><a th:href="@{/web/dashboard}">⬅ Back to Dashboard</a></p>
+</div>
+</body>
+</html>

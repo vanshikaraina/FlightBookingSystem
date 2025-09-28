@@ -1,0 +1,58 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Dashboard</title>-->
+<!--  <link rel="stylesheet" th:href="@{/style.css}" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<div th:replace="fragments/navbar :: navbar"></div>-->
+
+<!--<div class="container">-->
+<!--  <h2>Dashboard</h2>-->
+<!--  <p>Welcome, <span th:text="${user.name}">User</span>!</p>-->
+<!--  <ul>-->
+<!--    <li><a th:href="@{/web/flights}">Search Flights</a></li>-->
+<!--    <li><a th:href="@{/web/bookings}">My Bookings</a></li>-->
+<!--    <li><a th:href="@{/web/profile}">Profile</a></li>-->
+<!--  </ul>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" th:href="@{/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+  <h2>Dashboard</h2>
+  <p>Welcome, <span th:text="${user.name}">User</span>!</p>
+
+  <!-- Admin Panel -->
+  <div th:if="${user.role.name() == 'ADMIN'}">
+    <h3>Admin Panel</h3>
+    <ul>
+      <li><a th:href="@{/web/flights/manage}">Manage Flights</a></li>
+      <li><a th:href="@{/web/users/manage}">Manage Users</a></li>
+      <li><a th:href="@{/web/bookings/manage}">Manage Bookings</a></li>
+    </ul>
+  </div>
+
+  <!-- User Panel -->
+  <div th:if="${user.role.name() == 'USER'}">
+    <h3>User Panel</h3>
+    <ul>
+      <li><a th:href="@{/web/flights}">Search Flights</a></li>
+      <li><a th:href="@{/web/bookings}">My Bookings</a></li>
+      <li><a th:href="@{/web/profile}">Profile</a></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

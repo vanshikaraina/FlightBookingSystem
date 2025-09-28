@@ -1,50 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Flight Booking API</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            text-align: center;
-            margin-top: 30px;
-        }
-        table {
-            width: 90%;
-            margin: 30px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #333;
-            padding: 10px 15px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        tr:nth-child(even) {
-            background-color: #fafafa;
-        }
-    </style>
+    <title>Welcome - Flight Booking</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-<h1 th:text="${message}"></h1>
-<table>
-    <thead>
-    <tr>
-        <th>Method</th>
-        <th>URL</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="ep : ${endpoints}">
-        <td th:text="${ep.method}"></td>
-        <td th:text="${ep.url}"></td>
-        <td th:text="${ep.description}"></td>
-    </tr>
-    </tbody>
-</table>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="hero">
+    <div class="hero-content">
+        <h1>Book Your Dream Flight</h1>
+        <p>Fast, reliable, and affordable air travel reservations.</p>
+        <div class="hero-buttons">
+            <a th:href="@{/web/flights}" class="btn">Explore Flights</a>
+            <a th:href="@{/web/register}" class="btn btn-secondary">Join Now</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Why Choose Us?</h2>
+    <div class="features">
+        <div class="card">
+            <h3>✈ Easy Booking</h3>
+            <p>Book flights in just a few clicks with a clean and modern interface.</p>
+        </div>
+        <div class="card">
+            <h3>💰 Best Prices</h3>
+            <p>Get the most affordable deals without compromising comfort.</p>
+        </div>
+        <div class="card">
+            <h3>🌍 Global Reach</h3>
+            <p>From local trips to international destinations, we cover it all.</p>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

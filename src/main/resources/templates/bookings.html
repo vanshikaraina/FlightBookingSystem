@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Your Bookings</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+  <h2>Your Bookings</h2>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Booking ID</th>
+      <th>Flight No</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Seats</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="booking : ${bookings}">
+      <td th:text="${booking.id}"></td>
+      <td th:text="${booking.flight.flightNumber}"></td>
+      <td th:text="${booking.flight.source}"></td>
+      <td th:text="${booking.flight.destination}"></td>
+
+
+      <td th:text="${booking.seatsBooked}"></td>
+      <td th:text="${booking.status}"></td>
+      <td>
+        <form th:action="@{/web/cancel/{id}(id=${booking.id})}" method="post">
+          <input type="number" name="seatsToCancel" min="1" th:attr="max=${booking.seatsBooked}" required />
+          <button type="submit">Cancel</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <a th:href="@{/web/dashboard}" class="btn">⬅ Back to Dashboard</a>
+</div>
+
+</body>
+</html>
